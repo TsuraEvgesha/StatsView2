@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,15 +10,10 @@
         android:id ="@+id/statsView"
         android:layout_width="300dp"
         android:layout_height="300dp"
+        android:layout_gravity = "center"
         app:textSize="20sp"
-        app:lineWidth="16dp"
-        app:color1="#391279"
-        app:color2="#939124"
-        app:color3="#182957"
-        app:color4="#582012"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:lineWidth="20dp"
+        app:colors="@array/colors"
+        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
