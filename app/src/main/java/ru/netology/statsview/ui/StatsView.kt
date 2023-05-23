@@ -43,8 +43,12 @@ class StatsView @JvmOverloads constructor(
         context.withStyledAttributes(attributeSet, R.styleable.StatsView) {
             textSize = getDimension(R.styleable.StatsView_textSize, textSize)
             lineWidth = getDimension(R.styleable.StatsView_lineWidth, lineWidth.toFloat()).toInt()
-            val resId = getResourceId(R.styleable.StatsView_colors, 0)
-            colors = resources.getIntArray(resId).toList()
+            colors = listOf(
+                getColor(R.styleable.StatsView_color1, generateRandomColor()),
+                getColor(R.styleable.StatsView_color2, generateRandomColor()),
+                getColor(R.styleable.StatsView_color3, generateRandomColor()),
+                getColor(R.styleable.StatsView_color4, generateRandomColor())
+            )
         }
     }
 
@@ -89,15 +93,23 @@ class StatsView @JvmOverloads constructor(
             return
         }
 //        canvas.drawCircle(center.x,center.y,radius, freePaint)
+        canvas.drawText(
+            "%.2f%%".format(data.sum() * 100),
+            center.x,
+            center.y + textPaint.textSize / 4,
+            textPaint,
+        )
 
         var startAngle = -90F
+        val progressAngle = progress * 360F
         for ((index, datum) in data.withIndex()) {
-
-            val angle = 360F * datum
+            val angle = datum * 360F
+            val angle2 = progressAngle - step
             paint.color = colors.getOrNull(index) ?: generateRandomColor()
-            canvas.drawArc(oval, startAngle + (progress * 360F), angle * progress, false, paint)
+            canvas.drawArc(oval, startAngle, angle2, false, paint)
             startAngle += angle
-            step = angle + startAngle
+            step += angle
+            if (step > progressAngle) return
 
         }
 
@@ -109,13 +121,7 @@ class StatsView @JvmOverloads constructor(
 //            canvas.drawArc(oval, startAngle,angle,false, paint)
 //        }
 
-        canvas.drawText(
 
-            "%.2f%%".format(data.sum() * 100),
-            center.x,
-            center.y + textPaint.textSize / 4,
-            textPaint,
-        )
 
     }
 
@@ -125,7 +131,6 @@ class StatsView @JvmOverloads constructor(
             it.cancel()
         }
         progress = 0F
-        progress.toInt()
 
         valueAnimator = ValueAnimator.ofFloat(0F, 1F)
             .apply {
@@ -133,7 +138,7 @@ class StatsView @JvmOverloads constructor(
                     progress = anim.animatedValue as Float
                     invalidate()
                 }
-                duration = 1000
+                duration = 2000
                 interpolator = LinearInterpolator()
             }.also {
                 it.start()

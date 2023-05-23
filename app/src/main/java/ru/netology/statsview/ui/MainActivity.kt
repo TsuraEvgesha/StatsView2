@@ -87,6 +87,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 //            playSequentially(scale,alpha)
 //        }.start()
 
+
 //        builder ->>>> play(...) .after(...) .before(...) .with(...)
     }
 }
