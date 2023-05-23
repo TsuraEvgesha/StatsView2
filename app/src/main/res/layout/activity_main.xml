@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top|center_horizontal"/>
+        android:layout_gravity="top|center_horizontal" />
 
     <ru.netology.statsview.ui.StatsView
-        android:id ="@+id/statsView"
+        android:id="@+id/statsView"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity = "center"

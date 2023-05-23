@@ -9,8 +9,10 @@
         android:interpolator = "@android:anim/linear_interpolator"
         android:repeatCount = "3"
         android:repeatMode="reverse"
+
         />
     <rotate
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
         android:duration="300"
         android:fromDegrees="0"
         android:pivotX="50%"
