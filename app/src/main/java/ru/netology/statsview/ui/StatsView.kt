@@ -43,12 +43,8 @@ class StatsView @JvmOverloads constructor(
         context.withStyledAttributes(attributeSet, R.styleable.StatsView) {
             textSize = getDimension(R.styleable.StatsView_textSize, textSize)
             lineWidth = getDimension(R.styleable.StatsView_lineWidth, lineWidth.toFloat()).toInt()
-            colors = listOf(
-                getColor(R.styleable.StatsView_color1, generateRandomColor()),
-                getColor(R.styleable.StatsView_color2, generateRandomColor()),
-                getColor(R.styleable.StatsView_color3, generateRandomColor()),
-                getColor(R.styleable.StatsView_color4, generateRandomColor())
-            )
+            val resId = getResourceId(R.styleable.StatsView_colors, 0)
+            colors = resources.getIntArray(resId).toList()
         }
     }
 
@@ -104,12 +100,11 @@ class StatsView @JvmOverloads constructor(
         val progressAngle = progress * 360F
         for ((index, datum) in data.withIndex()) {
             val angle = datum * 360F
-            val angle2 = progressAngle - step
             paint.color = colors.getOrNull(index) ?: generateRandomColor()
-            canvas.drawArc(oval, startAngle, angle2, false, paint)
+            canvas.drawArc(oval, startAngle + (progress * 360F), angle * progress, false, paint)
             startAngle += angle
             step += angle
-            if (step > progressAngle) return
+
 
         }
 
@@ -131,6 +126,7 @@ class StatsView @JvmOverloads constructor(
             it.cancel()
         }
         progress = 0F
+        progress.toInt()
 
         valueAnimator = ValueAnimator.ofFloat(0F, 1F)
             .apply {

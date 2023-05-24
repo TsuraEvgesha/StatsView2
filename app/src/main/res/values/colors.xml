@@ -11,9 +11,15 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="divider_color">#ccc</color>
-    <color name="color1">#6200EE</color>
-    <color name="color2">#FAF9FB</color>
-    <color name="color3">#02F40C</color>
-    <color name="color4">#C404FA</color>
+    <array name="colors">
+        <item>#6F11F4</item>
+        <item>#2EFB01</item>
+        <item>#FFDE03</item>
+        <item>#FF0266</item>
+        <item>#E7E6E7</item>
+
+
+    </array>
+
 
 </resources>

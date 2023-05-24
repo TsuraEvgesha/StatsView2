@@ -17,10 +17,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
-        app:color1="#C31B1B"
-        app:color2="#0909DD"
-        app:color3="#FAF3F3"
-        app:color4="#1936ED"
+        app:colors="@array/colors"
         app:textSize="20sp"
         app:lineWidth="20dp" />
 
